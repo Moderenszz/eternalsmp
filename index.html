@@ -38,38 +38,96 @@
                 radial-gradient(circle at 90% 80%, rgba(20, 83, 45, 0.12) 0%, transparent 40%);
         }
 
+        /* Background Floating Animals / Elements Animation */
+        .floating-bg-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .float-item {
+            position: absolute;
+            opacity: 0.15;
+            animation: floatAround 15s ease-in-out infinite alternate;
+            filter: drop-shadow(0 0 10px rgba(34, 197, 94, 0.5));
+        }
+
+        .float-item.bee {
+            width: 50px;
+            top: 15%;
+            left: 10%;
+            animation-duration: 12s;
+        }
+
+        .float-item.allay {
+            width: 45px;
+            top: 25%;
+            right: 12%;
+            animation-duration: 18s;
+            animation-delay: 2s;
+        }
+
+        .float-item.phantom {
+            width: 70px;
+            bottom: 20%;
+            left: 15%;
+            animation-duration: 22s;
+            animation-delay: 1s;
+        }
+
+        @keyframes floatAround {
+            0% {
+                transform: translateY(0px) translateX(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-30px) translateX(20px) rotate(5deg);
+            }
+            100% {
+                transform: translateY(20px) translateX(-20px) rotate(-5deg);
+            }
+        }
+
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 24px 8%;
+            padding: 20px 8%;
             border-bottom: 2px solid var(--border-color);
-            background: rgba(11, 20, 12, 0.9);
+            background: rgba(11, 20, 12, 0.85);
             backdrop-filter: blur(16px);
             position: sticky;
             top: 0;
             z-index: 100;
         }
 
-        .logo {
-            font-size: 1.4rem;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 42px;
+            height: 42px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 8px rgba(74, 222, 128, 0.4));
+            border-radius: 8px;
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
             font-weight: 800;
             color: #4ade80;
             letter-spacing: -0.5px;
             text-transform: uppercase;
             font-family: 'JetBrains Mono', monospace;
             text-shadow: 0 0 15px rgba(74, 222, 128, 0.4);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo svg {
-            width: 24px;
-            height: 24px;
-            stroke: #4ade80;
-            fill: none;
-            stroke-width: 2.5;
         }
 
         .nav-links {
@@ -331,7 +389,6 @@
             line-height: 1.6;
         }
 
-        /* Rules Section Styled List */
         .info-box {
             background: var(--bg-card);
             border: 2px solid var(--border-color);
@@ -406,6 +463,7 @@
             color: var(--text-muted);
             font-size: 0.85rem;
             background: rgba(11, 20, 12, 0.8);
+            z-index: 10;
         }
 
         #toast {
@@ -434,11 +492,20 @@
 </head>
 <body>
 
+    <!-- Background Floating Elements / Animals -->
+    <div class="floating-bg-elements">
+        <!-- Menggunakan SVG ikon lebah/hewan melayang -->
+        <svg class="float-item bee" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+        <svg class="float-item allay" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+        <svg class="float-item phantom" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+    </div>
+
     <header>
-        <div class="logo">
-            <svg viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-            Eternal SMP
-        </div>
+        <a href="#" class="logo-container">
+            <!-- Menggunakan logo grass block aslimu -->
+            <img src="Eternalsmp.png" alt="Eternal SMP Logo" class="logo-img">
+            <span class="logo-text">Eternal SMP</span>
+        </a>
         <ul class="nav-links">
             <li><a href="#features">Fitur</a></li>
             <li><a href="#rules">Aturan</a></li>
